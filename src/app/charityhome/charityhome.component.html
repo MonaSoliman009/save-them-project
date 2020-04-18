@@ -24,7 +24,7 @@
       <li class="nav-item mr-4">
         <i class="fas fa-bell align-center"></i>
 
-        <a class="nav-link" [routerLink]="['notification']">Notifications</a>
+        <a class="nav-link" (click)="notifyshow()" >Notifications</a>
       </li>
      
       <form class="form-inline mr-5 ml-5 mt-3 searchform">
@@ -101,7 +101,7 @@
 
 
 
-  <div class="container-fluid  notifi_general" >
+  <div class="container-fluid  notifi_general" *ngIf="isnotify" >
     <div class="row">
      
       <div class="col-md-12">
@@ -109,7 +109,7 @@
         <hr/>
        
         <div class="notifiy" *ngFor="let donatem of Material">
-          <div [class]="depend">
+          <div (click)="gomaterial(donatem)">
           <h4>{{donatem.donorName }} from {{ donatem.country}} will donate with {{donatem.type}}</h4>
           <p>{{donatem.createdat}}</p>
           

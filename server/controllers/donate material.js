@@ -53,4 +53,27 @@ if(result){
   
   })
 
+
+
+  
+route.get("/material/listitem/:id",async(req,res)=>{
+   
+  
+    let resulttwo= await DonateMaterial.find({_id:req.params.id},function(err,data){
+      if(err){
+      }
+  
+  })
+  
+  if(resulttwo){
+  
+      res.json(resulttwo)
+  }
+  
+  
+    
+    
+    
+    })
+
 module.exports = route

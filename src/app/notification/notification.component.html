@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"><img src="../../assets/1.jpg" class="nav_logo" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line" style="margin-bottom: 0;"></span>
+      </span>
+    </button>
+  
+    <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+      <ul class="navbar-nav  ">
+        <li class="nav-item active">
+          <i class="fas fa-home align-center "></i>
+          <a class="nav-link " (click)="refresh()">
+            Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-envelope align-center  "></i>
+  
+          <a class="nav-link my-0" href="#">Messages</a>
+        </li>
+        <li class="nav-item mr-4">
+          <i class="fas fa-bell align-center"></i>
+  
+          <a class="nav-link" (click)="notifyshow()" >Notifications</a>
+        </li>
+       
+        <form class="form-inline mr-5 ml-5 mt-3 searchform">
+            <div class="input-group-prepend">
+          <div class="btn-group">
+            <button type="button" class="btn btn-success mt-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" aria-describedby="basic-addon1">
+            </button>
+            <div class="dropdown-menu">
+              <div class="dropdown-item text-dark" style="cursor: pointer;" (click)="Voluntersearch()">Volunters</div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item  text-dark" style="cursor: pointer;" (click)="Charitysearch()">Charities</div>
+            </div>
+          </div>
+          <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="Start searching" aria-label="Search" (keypress)="searcheng()" (keydown)="searcheng2()">
+            </div>
+        </form>
+        <li class="nav-item mr-5 ml-5">
+          <i class="fa fa-user-circle"></i>
+  
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+       
+      </ul>
+    </div>
+  </nav>
+  <body>
+<div class="container  col-md-4  main_notify">
+    
+        <div *ngFor="let item of Material" >
+
+<h3>{{item.donorName}}</h3>
+<h2><span>E.mail :</span> {{item.email}}</h2>
+<h2><span>Phone :</span> {{item.phone}}</h2>
+<h2><span>Country :</span> {{item.country}}</h2>
+<h2><span>City :</span> {{item.City}}</h2>
+<h2><span>Address :</span> {{item.address}}</h2>
+<h2><span>Material Type :</span> {{item.type}}</h2>
+
+
+</div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>

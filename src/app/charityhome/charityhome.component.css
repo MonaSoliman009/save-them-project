@@ -1,6 +1,7 @@
 body {
 
   box-sizing: border-box;
+  padding-top: 6%;
 }
 
 .profileimg {
@@ -403,7 +404,13 @@ color:#3B6D8C ;}
   cursor: pointer;
 }
 
-
+nav{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:536977569
+}
 .notifi_general{
   width:35%;
   height: 300px;
@@ -431,13 +438,13 @@ color:#3B6D8C ;}
   padding-right: 1%;
   cursor: pointer;
 }
-h4{
+.notifiy h4{
 
 
   color: #AFBF34; font-family: 'Trocchi', serif; font-size: 19px; font-weight: normal; line-height: 30px; margin: 0; 
 
 }
-p{
+.notifiy p{
   font-size: 12px;
   font-family: 'Trocchi', serif;
   color: #AFBF34

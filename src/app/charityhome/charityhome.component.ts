@@ -56,6 +56,8 @@ export class CharityhomeComponent implements OnInit {
   public iscomment = false;
   public following=false;
   public isfollow = false;
+  public isnotify = false;
+
   public Following = {}
   public islike = false;
   charitydetaile = new Signup("", "", "", "", "", "", "", "");
@@ -80,6 +82,16 @@ public charityclass =new Charity('','','','','','','','',[],[])
     this.cahritysearchlist = false;
 
   }
+  notifyshow(){
+    if(this.isnotify==false  ){
+
+      this.isnotify=true
+    }
+    else{
+      this.isnotify=false
+    }
+
+  }
   Charitysearch(){
     this.cahritysearchlist = true;
     this.Voluntersearchlist = false;
@@ -93,23 +105,12 @@ public charityclass =new Charity('','','','','','','','',[],[])
   }
 charitydetails:Signup[]= [];
   ngOnInit() {
-    this._LoginService.charitydetails(this.code).subscribe(
-      data => {
-        this.charitydetaile = data;
+    // this._LoginService.charitydetails(this.code).subscribe(
+    //   data => {
+    //     this.charitydetaile = data;
 
-      }
-    );
-    this.charityService.listmaterial(this.charitydetaile.name).subscribe(
-      data => {
-        this.Material = data as  DonationMaterial[];
-        console.log(this.Material )
-       
-
-      },
-      error => {
-
-console.log(error)      }
-    )
+    //   }
+    // );
 
     $("#addfolloing").on('click',function(){
       $(this).closest("#charitysuggest").remove();
@@ -124,6 +125,19 @@ console.log(error)      }
         this.profileimageee= require("../../../server/upload/"+this.charitydetaile.img.substr(12));
 
         this.ID = this.code.slice(0, 9);
+        this.charityService.listmaterial(this.charitydetaile.name).subscribe(
+          data => {
+            console.log(this.charitydetaile.name)
+            this.Material = data as  DonationMaterial[];
+            console.log(this.Material )
+           
+    
+          },
+          error => {
+    
+    console.log(error)      }
+        )
+    
       },
       error => {
         this.router.navigate(["login"]);
@@ -451,5 +465,13 @@ else{
   
     this.router.navigate(['home/charity/' + charity._id + '/charity/account']);
   }
+  gomaterial(donatem){
 
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.code = params.get("_id");
+    });
+  
+    this.router.navigate(['home/charity/' + donatem._id + '/notification']);
+
+  }
 }
