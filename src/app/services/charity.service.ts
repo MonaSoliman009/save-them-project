@@ -38,6 +38,10 @@ export class CharityService {
     return this.http.get<any>(
       "http://localhost:3000/savethem/provides/list/"+_id)
   }
+  listmaterial(name){
+    return this.http.get<any>(
+      "http://localhost:3000/donate/material/list/"+name)
+  }
   deleteneed(_id){
     return this.http.delete("http://localhost:3000/savethem/needs/delete/"+_id)
   }

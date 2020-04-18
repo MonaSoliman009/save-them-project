@@ -7,6 +7,9 @@ var donationmaterial = new Schema({
        
       
     },
+    createdat: {
+        type: Date
+      },
     phone: {
         type: String,
         minlength: 11,

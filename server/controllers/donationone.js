@@ -2,6 +2,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var router = express.Router();
 var bcrypt = require("bcryptjs");
+var paypal = require('paypal-rest-sdk');
+
 var parseUrlencoded = bodyParser.urlencoded({
   extended: true
 });
@@ -32,7 +34,64 @@ router.post("/payment", parseUrlencoded, async (req, res) => {
   var salt = await bcrypt.genSalt(5);
   donation.donorcreditnum = await bcrypt.hash(donation.donorcreditnum, salt);
   await donation.save();
+
   res.json(donation);
 });
+
+
+router.post("/paymentpaypal", parseUrlencoded, async (req, res) => {
+
+  const create_payment_json = {
+    "intent": "sale",
+    "payer": {
+        "payment_method": "paypal"
+    },
+    "redirect_urls": {
+        "return_url": "http://localhost:4200/done",
+        "cancel_url": "http://localhost:4200/donation"
+    },
+    "transactions": [{
+        "item_list": {
+            "items": [{
+                "name": "donation",
+                "sku": "item",
+                "price":req.body.amount,
+                "currency": "USD",
+                "quantity": 1
+            }]
+        },
+        "amount": {
+            "currency": "USD",
+            "total": req.body.amount
+        },
+        "description": "Donation to those people in need."
+    }]
+};
+
+
+paypal.payment.create(create_payment_json, function (error, payment) {
+    if (error) {
+        throw error;
+    } else {
+        console.log("Create Payment Response");
+        for(let i = 0;i<payment.links.length;i++){
+
+        if(payment.links[i].rel === "approval_url"){
+
+         res.json("approval_url")
+
+        }
+
+        }
+    }
+});
+
+
+
+
+
+
+
+})
 
 module.exports = router;

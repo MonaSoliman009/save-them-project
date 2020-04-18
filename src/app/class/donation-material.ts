@@ -8,6 +8,7 @@ export class DonationMaterial {
         public address :string,
         public charityname :string,
         public type :string,
+        public createdat :string,
 
     ){}
 }

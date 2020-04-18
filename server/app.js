@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 var config = require("config")
 const nodemailer = require('nodemailer');
+var paypal = require('paypal-rest-sdk');
 
 var Strategy = require('passport-facebook').Strategy;
 var passport = require('passport');
@@ -200,6 +201,30 @@ io.on("connection", (socket) => {
       }
     })
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   socket.on('charitypost', (charitynewpost) => {
@@ -749,6 +774,13 @@ app.post('/send', function (req, res) {
     }
   });
 })
+
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'AT8IcnTryJ8DL5khvz6XRXOZ2E-6Hh7wYLP3mWfxRBt_XFX2xwWvWbOoRwH393prUSCmqO1bbcMwhxrQ',
+  'client_secret': 'EAu6MkzLIMCoHXRljGSHuRt_PMYVK7Hh1iJpIFSxghjUV4SXrmuazkFzg3pLcdvn3Es-MSJG7Bn8i0CE'
+});
 
 
 /*-----------------------------------------------------------------------*/

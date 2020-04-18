@@ -24,7 +24,7 @@ export class DonationComponent implements OnInit {
   charityHasErr: any;
   errormsg = "";
   errormsgg=""
-  donationMaterial= new DonationMaterial("","","","","","","","")
+  donationMaterial= new DonationMaterial("","","","","","","","","")
 
   constructor(
     private _PaymentService: PaymentService,
@@ -109,7 +109,7 @@ console.log(charitydetails.charityBankAccount)
   Donate() {
     this.donateMaterialSerives.DonateMaterial(this.donationMaterial).subscribe(
       response => {
-        
+        console.log(response);
        this.router.navigate(["/done"]) 
     
     

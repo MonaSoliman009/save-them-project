@@ -23,6 +23,7 @@ import { CheckauthService } from './services/checkauth.service';
 import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { ResetComponent } from './reset/reset.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { NotificationComponent} from './notification/notification.component'
 const routes: Routes = [
   { path: "", component: HomeregisterationComponent },
   { path: "login", component: LoginComponent,    
@@ -50,6 +51,12 @@ const routes: Routes = [
   { path: "donation", component: DonationComponent },
   { path: "signup", component: SignupComponent },
   { path: "done", component: CongrateComponent },
+  {
+    path:"home/charity/:_id/notification",
+    component:NotificationComponent,
+    canActivate: [GuardService]
+
+  },
   {
     path: "admin/:_id",
     component: DashBoardComponent,

@@ -19,7 +19,7 @@ route.post("/material", parseUrlencoded, (req, res) => {
         donateMaterial.address= req.body.address
         donateMaterial.charityname= req.body.charityname
         donateMaterial.type= req.body.type
-    
+        donateMaterial.createdat=Date.now()
 
 
     donateMaterial.save((error, data) => {
@@ -32,5 +32,25 @@ route.post("/material", parseUrlencoded, (req, res) => {
     })
 })
 
+route.get("/material/list/:name",async(req,res)=>{
+   
+  
+  let result= await DonateMaterial.find({charityname:req.params.name},function(err,data){
+
+    if(err){
+    }
+
+})
+
+if(result){
+
+    res.json(result)
+}
+
+
+  
+  
+  
+  })
 
 module.exports = route

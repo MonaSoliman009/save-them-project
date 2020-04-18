@@ -402,3 +402,47 @@ color:#3B6D8C ;}
 .sgt-text h4:hover{
   cursor: pointer;
 }
+
+
+.notifi_general{
+  width:35%;
+  height: 300px;
+  border-radius:2%;
+  padding-top: 1%;
+  position: fixed;
+  z-index: 25597756;
+  left:23%;
+  top:13%;
+  background-color:#3B6D8C;
+}
+
+.notifi_general h2{
+
+  color: white; font-family: 'Trocchi', serif; font-size: 26px; font-weight: bold; line-height: 30px; margin: 0; 
+}
+
+
+
+.notifiy{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 3%;
+  padding-left: 1%;
+  padding-right: 1%;
+  cursor: pointer;
+}
+h4{
+
+
+  color: #AFBF34; font-family: 'Trocchi', serif; font-size: 19px; font-weight: normal; line-height: 30px; margin: 0; 
+
+}
+p{
+  font-size: 12px;
+  font-family: 'Trocchi', serif;
+  color: #AFBF34
+}
+.removetontify{
+  display:hidden
+}
+

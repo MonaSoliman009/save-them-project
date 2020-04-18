@@ -35,6 +35,7 @@ import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 import { ResetComponent } from './reset/reset.component';
 import {  ConfirmEqualValidatorDirective } from './shared/confirmpass.directive';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     ForgetpassComponent,
     ResetComponent,
     ConfirmEqualValidatorDirective,
-    NotfoundComponent    
+    NotfoundComponent,
+    NotificationComponent    
   ],
   imports: [
     BrowserModule,

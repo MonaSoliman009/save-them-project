@@ -13,5 +13,11 @@ export class PaymentService {
       "http://localhost:3000/savethem/donatepayment/payment",
       storepayment
     );
+  };
+  postpaypal(storepayment: Payment) {
+    return this._http.post<any>(
+      "http://localhost:3000/savethem/donatepayment/paymentpaypal",
+      storepayment
+    );
   }
 }

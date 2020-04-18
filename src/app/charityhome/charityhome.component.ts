@@ -12,6 +12,7 @@ import { Follow } from '../class/follow';
 import * as $ from 'jquery'
 import { AdminService } from '../services/admin.service';
 import { Charity } from '../class/charity';
+import { DonationMaterial } from '../class/donation-material';
 declare var require: any;
 
 @Component({
@@ -20,6 +21,8 @@ declare var require: any;
   styleUrls: ["./charityhome.component.css"]
 })
 export class CharityhomeComponent implements OnInit {
+  Material : DonationMaterial[]=[];
+
   createpost;
   postlikes;
   likeNo;
@@ -40,6 +43,7 @@ export class CharityhomeComponent implements OnInit {
     private _AdminService : AdminService
 
   ) { }
+  depend=""
   public code;
   AllLikes;
   IDpost: string;
@@ -89,6 +93,24 @@ public charityclass =new Charity('','','','','','','','',[],[])
   }
 charitydetails:Signup[]= [];
   ngOnInit() {
+    this._LoginService.charitydetails(this.code).subscribe(
+      data => {
+        this.charitydetaile = data;
+
+      }
+    );
+    this.charityService.listmaterial(this.charitydetaile.name).subscribe(
+      data => {
+        this.Material = data as  DonationMaterial[];
+        console.log(this.Material )
+       
+
+      },
+      error => {
+
+console.log(error)      }
+    )
+
     $("#addfolloing").on('click',function(){
       $(this).closest("#charitysuggest").remove();
      })
