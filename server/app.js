@@ -202,11 +202,67 @@ io.on("connection", (socket) => {
     })
   });
 
+  const DonateMaterial = require("./models/donation(material)")
+
+
+socket.on("submit material",async(data)=>{
+console.log(data);
+const donateMaterial = new DonateMaterial()
+donateMaterial.donorName= data.donorName
+donateMaterial.email= data.email
+donateMaterial.phone= data.phone
+donateMaterial.country= data.country
+donateMaterial.City= data.City
+donateMaterial.address= data.address
+donateMaterial.charityname= data.charityname
+donateMaterial.type= data.type
+donateMaterial.createdat=Date.now()
+
+
+donateMaterial.save((error, data) => {
+if (error) {
+  console.log(error)
+}
+else {
+   DonateMaterial.find({charityname:data.charityname},function(err,data){
+
+    if(err){
+      console.log(err)
+    }
+    else{
+      io.emit("getmaterialbyname",data)
+    }
+
+})
+
+ console.log("material saved")
+}
+
+})
 
 
 
 
 
+
+})
+
+socket.on("getmaterials",async(charitname)=>{
+
+  await DonateMaterial.find({charityname:charitname},function(err,data){
+
+    if(err){
+      console.log(err)
+    }
+    else{
+      io.emit("getmaterialbyname",data)
+    }
+
+})
+
+
+
+})
 
 
 

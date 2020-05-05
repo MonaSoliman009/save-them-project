@@ -125,18 +125,31 @@ charitydetails:Signup[]= [];
         this.profileimageee= require("../../../server/upload/"+this.charitydetaile.img.substr(12));
 
         this.ID = this.code.slice(0, 9);
-        this.charityService.listmaterial(this.charitydetaile.name).subscribe(
-          data => {
-            console.log(this.charitydetaile.name)
-            this.Material = data as  DonationMaterial[];
-            console.log(this.Material )
+    //     this.charityService.listmaterial(this.charitydetaile.name).subscribe(
+    //       data => {
+    //         console.log(this.charitydetaile.name)
+    //         this.Material = data as  DonationMaterial[];
+    //         console.log(this.Material )
            
     
-          },
-          error => {
+    //       },
+    //       error => {
     
-    console.log(error)      }
-        )
+    // console.log(error)      }
+    //     )
+    this.postSerives.getmaterialb(this.charitydetaile.name)
+    this.postSerives.getmaterial().subscribe(  
+              data => {
+                console.log("hi")
+              console.log(this.charitydetaile.name)
+              this.Material = data as  DonationMaterial[];
+              console.log(this.Material )
+             
+      
+            },
+            error => {
+      
+      console.log(error)      })
     
       },
       error => {
@@ -204,6 +217,7 @@ charitydetails:Signup[]= [];
     }
   )
   }
+
   refresh() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.code = params.get("_id");

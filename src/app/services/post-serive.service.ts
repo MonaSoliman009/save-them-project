@@ -43,7 +43,21 @@ newpost(createpost)
 {
   this.socket.emit("create post",createpost)
 }
+newmaterial(creatematerial){
+  this.socket.emit("submit material",creatematerial)
+}
+getmaterial(){
+let materials =new Observable(observer=>{
+  this.socket.on("getmaterialbyname",material=>{
+    observer.next(material)
+  }) 
+  })
+  return materials
 
+}
+getmaterialb(name){
+this.socket.emit("getmaterials",name)
+}
 
 getpost(){
   let Posts= new Observable(observer=>{

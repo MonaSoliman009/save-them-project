@@ -421,6 +421,7 @@ nav{
   left:23%;
   top:13%;
   background-color:#3B6D8C;
+  overflow: auto;
 }
 
 .notifi_general h2{

@@ -7,6 +7,7 @@ import { DonatationService } from '../services/donatation.service';
 import { CharityService } from '../services/charity.service';
 import { AdminService } from '../services/admin.service';
 import { Signup } from '../class/signup';
+import { PostSeriveService } from '../services/post-serive.service';
 
 declare var require: any;
 declare var $: any;
@@ -18,6 +19,8 @@ declare var $: any;
   providers: [PaymentService]
 })
 export class DonationComponent implements OnInit {
+  Material : DonationMaterial[]=[];
+
   ispayment = true;
   ismaterial = false;
   public donateamount = "";
@@ -25,12 +28,14 @@ export class DonationComponent implements OnInit {
   errormsg = "";
   errormsgg=""
   donationMaterial= new DonationMaterial("","","","","","","","","")
-
+  
   constructor(
     private _PaymentService: PaymentService,
     private donateMaterialSerives :DonatationService,
     private router: Router,
-    private _AdminService : AdminService
+    private _AdminService : AdminService,
+    private _PostSeriveService: PostSeriveService,
+
   ) {}
   paymentregister() {
     this.ispayment = true;
@@ -107,22 +112,33 @@ console.log(charitydetails.charityBankAccount)
     }
   }
   Donate() {
-    this.donateMaterialSerives.DonateMaterial(this.donationMaterial).subscribe(
-      response => {
-        console.log(response);
-       this.router.navigate(["/done"]) 
-    
-    
-    
-    
-    
+    this._PostSeriveService.newmaterial(this.donationMaterial);
+    this._PostSeriveService.getmaterial().subscribe(  
+      data => {
+      this.Material = data as  DonationMaterial[];
+      console.log(this.Material )
+     
+
     },
-      error => {
+    error => {
 
-this.errormsgg="Somthing went wrong Please try again"
+console.log(error)      })
+//     .subscribe(
+//       response => {
+//         console.log(response);
+//       //  this.router.navigate(["/done"]) 
+    
+    
+    
+    
+    
+//     },
+//       error => {
 
-      }
-    );
+// this.errormsgg="Somthing went wrong Please try again"
+
+//       }
+//     );
   }
   
 }
