@@ -27,6 +27,8 @@ export class DonationComponent implements OnInit {
   charityHasErr: any;
   errormsg = "";
   errormsgg=""
+ i = 0;
+
   donationMaterial= new DonationMaterial("","","","","","","","","")
   
   constructor(
@@ -113,32 +115,20 @@ console.log(charitydetails.charityBankAccount)
   }
   Donate() {
     this._PostSeriveService.newmaterial(this.donationMaterial);
+    
     this._PostSeriveService.getmaterial().subscribe(  
+    
       data => {
       this.Material = data as  DonationMaterial[];
-      console.log(this.Material )
+      this.i+=1
+      this.router.navigate(["/done"]) 
      
 
     },
     error => {
 
-console.log(error)      })
-//     .subscribe(
-//       response => {
-//         console.log(response);
-//       //  this.router.navigate(["/done"]) 
-    
-    
-    
-    
-    
-//     },
-//       error => {
+this.errormsgg="Somthing went wrong Please try again"   })
 
-// this.errormsgg="Somthing went wrong Please try again"
-
-//       }
-//     );
   }
   
 }

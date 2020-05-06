@@ -21,8 +21,9 @@
 
         <a class="nav-link my-0" href="#">Messages</a>
       </li>
-      <li class="nav-item mr-4">
-        <i class="fas fa-bell align-center"></i>
+      <li class="nav-item mr-4 ">
+        <i class="fas fa-bell align-center mb-2" style="float:left;"></i>
+        <div style="float:right;"><span *ngIf="isread" class="badge badge-danger">{{notseen}}</span></div>
 
         <a class="nav-link" (click)="notifyshow()" >Notifications</a>
       </li>
@@ -104,18 +105,18 @@
   <div class="container-fluid  notifi_general" *ngIf="isnotify" >
     <div class="row">
      
-      <div class="col-md-12">
+      <div class="col-md-12" >
         <h2 class="searchsmall" >Material Volunteer Notification</h2>
         <hr/>
-       
+       <div id="parent">
         <div class="notifiy" *ngFor="let donatem of Material">
-          <div (click)="gomaterial(donatem)">
+          <div (click)="gomaterial(donatem)"  id="{{donatem._id}}">
           <h4>{{donatem.donorName }} from {{ donatem.country}} will donate with {{donatem.type}}</h4>
           <p>{{donatem.createdat}}</p>
           
           </div>
           </div>
-                   
+        </div>     
        
       </div>
       

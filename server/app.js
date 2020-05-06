@@ -224,12 +224,15 @@ if (error) {
   console.log(error)
 }
 else {
+  io.emit("getnotification",data)
+
    DonateMaterial.find({charityname:data.charityname},function(err,data){
 
     if(err){
       console.log(err)
     }
     else{
+
       io.emit("getmaterialbyname",data)
     }
 

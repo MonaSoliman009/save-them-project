@@ -222,6 +222,7 @@ body {
 
 .nav-item {
   margin-right: 4%;
+  width: 20%;
 }
 
 ul li {
@@ -438,6 +439,10 @@ nav{
   padding-left: 1%;
   padding-right: 1%;
   cursor: pointer;
+}
+#parent {
+  display: flex;
+  flex-direction: column-reverse;
 }
 .notifiy h4{
 

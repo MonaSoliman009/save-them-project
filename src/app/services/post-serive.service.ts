@@ -55,6 +55,15 @@ let materials =new Observable(observer=>{
   return materials
 
 }
+getnotification(){
+  let notifications =new Observable(observer=>{
+    this.socket.on("getnotification",notification=>{
+      observer.next(notification)
+    }) 
+    })
+    return notifications
+  
+  }
 getmaterialb(name){
 this.socket.emit("getmaterials",name)
 }

@@ -22,10 +22,11 @@ declare var require: any;
 })
 export class CharityhomeComponent implements OnInit {
   Material : DonationMaterial[]=[];
-
+ notification=new DonationMaterial("","","","","","","","","")
   createpost;
   postlikes;
   likeNo;
+  notseen;
   public email;
   charities: unknown;
   postPostedBy: any;
@@ -57,7 +58,8 @@ export class CharityhomeComponent implements OnInit {
   public following=false;
   public isfollow = false;
   public isnotify = false;
-
+   unread=[]
+isread=true;
   public Following = {}
   public islike = false;
   charitydetaile = new Signup("", "", "", "", "", "", "", "");
@@ -82,16 +84,7 @@ public charityclass =new Charity('','','','','','','','',[],[])
     this.cahritysearchlist = false;
 
   }
-  notifyshow(){
-    if(this.isnotify==false  ){
-
-      this.isnotify=true
-    }
-    else{
-      this.isnotify=false
-    }
-
-  }
+  
   Charitysearch(){
     this.cahritysearchlist = true;
     this.Voluntersearchlist = false;
@@ -137,14 +130,14 @@ charitydetails:Signup[]= [];
     
     // console.log(error)      }
     //     )
+   
     this.postSerives.getmaterialb(this.charitydetaile.name)
     this.postSerives.getmaterial().subscribe(  
               data => {
                 console.log("hi")
               console.log(this.charitydetaile.name)
               this.Material = data as  DonationMaterial[];
-              console.log(this.Material )
-             
+              console.log(this.Material );
       
             },
             error => {
@@ -156,6 +149,20 @@ charitydetails:Signup[]= [];
         this.router.navigate(["login"]);
       }
     );
+    this.postSerives.getnotification().subscribe(  
+      data => {
+        console.log("hi");
+        this.isread=true;
+   this.unread.push(data);
+   this.notseen=this.unread.length;
+      console.log(this.unread.length )
+     
+
+    },
+    error => {
+
+console.log(error)      });
+
 
     // posts & posted by
     this.postSerives.getpost().subscribe(data=>{
@@ -240,6 +247,26 @@ charitydetails:Signup[]= [];
     localStorage.removeItem("token");
     this.router.navigate(["login"]);
   }
+
+
+
+
+  notifyshow(){
+    this.isread=false;
+    this.unread.length=0
+    if(this.isnotify==false  ){
+
+      this.isnotify=true
+    }
+    else{
+      this.isnotify=false
+    }
+
+  }
+
+
+
+
 
   onSubmit() {
   
@@ -479,8 +506,10 @@ else{
   
     this.router.navigate(['home/charity/' + charity._id + '/charity/account']);
   }
-  gomaterial(donatem){
+  
 
+
+  gomaterial(donatem){
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.code = params.get("_id");
     });
